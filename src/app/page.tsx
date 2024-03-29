@@ -75,7 +75,7 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            <div className="flex gap-8 w-full justify-between">
+            <div className="flex gap-8 max-sm:flex-col w-full justify-between">
               <div className="w-1/2">
                 <p className="text-xl leading-7 md:text-2xl xl:text-3xl">
 
