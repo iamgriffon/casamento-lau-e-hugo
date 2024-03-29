@@ -76,9 +76,8 @@ export default function Home() {
               </ul>
             </div>
             <div className="flex gap-8 max-sm:flex-col w-full justify-between">
-              <div className="w-1/2">
+              <div className="flex flex-col max-sm:gap-8 sm:w-1/2">
                 <p className="text-xl leading-7 md:text-2xl xl:text-3xl">
-
                   Join us as we celebrate our love and commitment to each other. #TEXTO1
                 </p>
                 <div className="space-y-2">
