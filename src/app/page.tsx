@@ -47,7 +47,6 @@ export default function Home() {
     <main className="caontainer bg-gray-1000 py-6 md:py-12 px-12 flex flex-col gap-16">
       <article id="header">
         <nav className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-black">O casamento de Laura & Hugo</h1>
           <ul className="flex space-x-6 text-black max-sm:hidden">
             <li>
               <Link className="hover:underline font-bold" href="#">
@@ -58,7 +57,7 @@ export default function Home() {
         </nav>
         <section id="sobre-o-evento">
           <div className="flex flex-col lg:gap-16">
-            <div className="space-y-2">
+            <div className="flex flex-col max-sm:gap-6 max-sm:mb-6">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] md:tracking-tighter">
                 O casamento de{" "}
                 <br className="md:hidden" />
