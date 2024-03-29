@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Anglecia Pro Display';
+  src: url('/assets/anglecia_pro_display.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/montserrat.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
