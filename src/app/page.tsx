@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 enum Version {
   dele = "dele",
@@ -17,7 +17,20 @@ const Divider = () => (
 
 export default function Home() {
 
-  const [version, setVersion] = useState<Version>(Version.dela)
+
+  const [version, setVersion] = useState<Version>(Version.dela);
+  const testimonyRef = useRef<HTMLParagraphElement>(null);
+
+  const onChangeTestimony = () => {
+
+    setVersion(prevState => prevState === Version.dele ? Version.dela : Version.dele)
+
+    if (testimonyRef.current) {
+      testimonyRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
+  }
+
   const VersionMap = {
     dela: (
       <>
@@ -34,7 +47,7 @@ export default function Home() {
         <span>Desde o primeiro “Oi” no chat do Instagram até o dia de hoje, passamos por diversas situações que nos amadureceram mais rápido do que pensamos, mas que bom que nos permitimos viver um dia de cada vez até chegarmos a decisão de formar a nossa família
         </span>
         <br />
-        <span>Confesso que o começo não foi o dos mais fáceis (nunca uma feijoada foi tão difícil de comer pra mim kkkk), mas com o passar do tempo fomos nos entendendo, entendendo o contexto de cada um e decidimos juntos dar um passo em direção a construção da nossa história.
+        <span>Confesso que o começo não foi o dos mais fáceis (nunca uma feijoada foi tão difícil de comer kkkk), mas com o passar do tempo fomos nos entendendo e decidimos juntos dar um passo em direção a construção da nossa história.
         </span>
         <br />
         <span>Estou ansioso pra viver mais esse capítulo da minha vida ao lado dela, e espero você lá para prestigiar esse momento que Deus preparou pra nós!</span>
@@ -44,10 +57,10 @@ export default function Home() {
   }
 
   return (
-    <main className="caontainer bg-gray-1000 py-6 md:py-12 px-12 flex flex-col gap-16">
+    <main className="caontainer bg-white py-6 md:py-12 px-12 flex flex-col gap-16">
       <article id="header">
         <nav className="flex items-center justify-between">
-          <ul className="flex space-x-6 text-black max-sm:hidden">
+          <ul className="flex space-x-6 text-black max-sm:hidden mb-4">
             <li>
               <Link className="hover:underline font-bold" href="#">
                 É Padrinho/Madrinha? Clique aqui.
@@ -74,30 +87,6 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            <div className="flex gap-8 max-sm:flex-col w-full justify-between">
-              <div className="flex flex-col max-sm:gap-8 sm:w-1/2">
-                <p className="text-xl leading-7 md:text-2xl xl:text-3xl">
-                  Join us as we celebrate our love and commitment to each other. #TEXTO1
-                </p>
-                <div className="space-y-2">
-                  <h2 className="text-xl font-semibold tracking-wide uppercase lg:text-2xl">Detalhes do Evento #TEXTO2 </h2>
-                  <p className="text-sm leading-6 md:text-base">
-                    Cerimônia: 4:00 PM  #TEXTO3
-                    <br />
-                    Recepção: 5:30 PM  #TEXTO4
-                    <br />
-                    Festa: 6:30 PM  #TEXTO5
-                    <br />
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col items-center justify-start gap-4 text-sm md:gap-2 object-cover">
-                <figure>
-                  <Image src="https://cdn0.casamentos.com.br/vendor/8896/original/1280/jpg/a58bd74a-404a-44a1-b9a5-52ac8a6dc3df_13_228896-161209763381320.webp" alt="Foto do lugar" width={450} height={120} />
-                </figure>
-                <p className="text-xs text-gray-800">Imagens do local</p>
-              </div>
-            </div>
           </div>
         </section>
       </article>
@@ -105,7 +94,7 @@ export default function Home() {
       <article id="historia">
         <section className="flex flex-col gap-10 lg:gap-12">
           <div className="flex flex-col gap-6">
-            <h2 className="text-3xl text-center font-bold tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] md:tracking-tighter">
+            <h2 ref={testimonyRef} className="text-3xl text-center font-bold tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] md:tracking-tighter">
               Nossa história
             </h2>
             <div className="flex flex-col items-center gap-1.5 md:gap-1">
@@ -121,13 +110,13 @@ export default function Home() {
           </div>
           <div className="grid items-start gap-4 text-sm md:gap-2">
             <div className="flex flex-col">
-              <p className="text-base flex flex-col leading-7 md:text-xl xl:text-2xl italic">
+              <p className="text-base flex flex-col md:text-xl xl:text-xl italic">
                 {VersionMap[version]}
               </p>
               <strong className="text-bold text-lg">
                 Por {version === Version.dele ? 'Hugo César' : 'Laura Dupin'}
               </strong>
-              <p className="hover:underline cursor-pointer text-base" onClick={() => setVersion(prevState => prevState === Version.dele ? Version.dela : Version.dele)}>
+              <p className="hover:underline cursor-pointer text-base" onClick={() => onChangeTestimony()}>
                 Clique para ler na versão {version === Version.dele ? 'dela' : 'dele'}
               </p>
             </div>
@@ -135,8 +124,63 @@ export default function Home() {
         </section>
       </article>
       <Divider />
+      <article>
+        <div className="grid gap-12 lg:gap-16">
+          <h2 className="text-3xl text-center font-bold tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] md:tracking-tighter">
+            Onde vai ser?
+          </h2>
+          <div className="flex gap-8 max-sm:flex-col w-full justify-between">
+            <div className="flex flex-col max-sm:gap-8 sm:w-1/2">
+              <p className="text-xl leading-7 md:text-2xl xl:text-3xl mb-4">
+                Celebre conosco essa nova etapa em nossas vidas!
+              </p>
+              <div className="space-y-2">
+                <h2 className="text-xl font-semibold tracking-wide uppercase">Detalhes do Evento </h2>
+                <p className="text-[1.25rem] leading-6 md:text-base">
+                  <span className="font-semibold">Recepção
+                  </span> - 10:00 (manhã)
+                  <br />
+                  <span className="font-semibold">
+                    Cerimônia
+                  </span> - 10:30 (manhã)
+                  <br />
+                  <span className="font-semibold">
+                    Festa
+                  </span> - 12:00 (meio-dia)
+                  <br />
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4 text-sm">
+            <div className="flex flex-col gap-10">
+              <p className="text-base text-center leading-7 md:text-xl xl:text-2xl">
+                Nossa cerimônia acontecerá no ESPAÇO REIS RECEPÇÕES. Veja no mapa abaixo como chegar!
+              </p>
+
+              <section className="rounded-md flex justify-center">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.886792527264!2d-46.8456741237206!3d-23.751416078669603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cfb2be522a60e9%3A0x55d5ecf0d9532700!2zUmVpcyBSZWNlcMOnw7Vlcw!5e0!3m2!1sen!2sbr!4v1711751216620!5m2!1sen!2sbr&hl=pt-BR"
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                ></iframe>
+
+              </section>
+              <div className="flex flex-col items-center justify-start gap-4 text-sm md:gap-2 object-cover">
+                <figure>
+                  <Image src="https://cdn0.casamentos.com.br/vendor/8896/original/1280/jpg/a58bd74a-404a-44a1-b9a5-52ac8a6dc3df_13_228896-161209763381320.webp" alt="Foto do lugar" width={450} height={120} lang="pt" />
+                </figure>
+                <p className="text-xs text-gray-800">Imagem do local</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <Divider />
       <article id="píx">
-        <section className="flex flex-col gap-12 lg:gap-16">
+        <section className="flex flex-col gap-12 lg:gap-16 mb-4">
           <h2 className="text-3xl font-bold text-center tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] md:tracking-tighter">
             Ajude-nos no pix!
           </h2>
@@ -154,22 +198,6 @@ export default function Home() {
             </section>
           </div>
         </section>
-      </article>
-      <Divider />
-      <article>
-        <div className="grid gap-12 lg:gap-16">
-          <h2 className="text-3xl text-center font-bold tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] md:tracking-tighter">
-            Onde vai ser?
-          </h2>
-          <div className="grid items-start gap-4 text-sm md:gap-2">
-            <div className="space-y-4">
-              <p className="text-base leading-7 md:text-xl xl:text-2xl">
-                Our wedding will take place at the beautiful Rosewood Manor. The historic charm of the venue and the
-                picturesque gardens provide the perfect backdrop for our special day.
-              </p>
-            </div>
-          </div>
-        </div>
       </article>
     </main>
   );
